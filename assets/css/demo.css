@@ -1,0 +1,401 @@
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+*{
+	padding:0;
+	margin:0;
+}
+
+html{
+	/*background-color: #eaf0f2;*/
+}
+
+body{
+	/*font:14px/1.5 Arial, Helvetica, sans-serif;*/
+	font-family: 'Montserrat', sans-serif;
+	/*background: url('http://www.mateomaneff.com.ar/images/fondo01.png') repeat;*/
+	background: url('../../images/fondo01.png') repeat;
+}
+
+header{
+	text-align: center;
+	padding-top: 100px;
+	margin-bottom:200px;
+}
+
+header h1{
+	font: normal 32px/1.5 'Open Sans', sans-serif;
+	color: #3F71AE;
+	padding-bottom: 16px;
+}
+
+header h2{
+	color: #F05283;
+}
+
+header h2 a{
+	color:inherit;
+	text-decoration: none;
+	display: inline-block;
+	border: 1px solid #F05283;
+	padding: 10px 15px;
+	border-radius: 3px;
+	font: bold 14px/1 'Open Sans', sans-serif;
+	text-transform: uppercase;
+}
+
+header h2 a:hover{
+	background-color:#F05283;
+	transition:0.2s;
+	color:#fff;
+}
+
+header ul {
+	max-width: 600px;
+	margin: 60px auto 0;
+}
+
+header ul a{
+	text-decoration: none;
+	color: #FFF;
+	text-align: left;
+	background-color: #B9C1CA;
+	padding: 10px 16px;
+	border-radius: 2px;
+	opacity: 0.8;
+	font-size: 16px;
+	display: inline-block;
+	margin: 4px;
+	line-height: 1;
+	outline: none;
+
+	transition: 0.2s ease;
+}
+
+header ul li a.active{
+	background-color: #66B650;
+	pointer-events: none;
+}
+
+header ul li a:hover {
+	opacity: 1;
+}
+
+header ul{
+	list-style: none;
+	padding: 0;
+}
+
+header ul li{
+	display: inline-block;
+}
+.container {
+	width: 100%;
+}
+.pd-0 {
+	padding: 0;
+}
+
+/* In our demo, the footers are fixed to the bottom of the page */
+footer{
+	position: fixed;
+	bottom: 0;
+}
+.footer {
+	width: 100%;
+	background-color: #292c2f;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  text-align: left;
+}
+.footer-distributed {
+	margin-top: 0;
+}
+@media (max-height:800px){
+	footer { position: static; }
+	header { padding-top:40px; }
+}
+
+
+/******************************************************************************
+Toda esta sección esta customizada para la pagina
+******************************************************************************/
+/* esta seccion es para el cuerpo de la pagina */
+.navbar {
+	min-height: 70px;
+}
+.navbar-collapse,
+.navbar-header {
+	min-height: 70px;
+}
+.navbar-nav>li>a {
+	min-height: 70px;
+	line-height: 35px;
+}
+.nav-mg {
+	margin-top: 70px !important;
+}
+a.navbar-brand {
+  padding-left: 80px;
+}
+ul.nav.navbar-nav.navbar-right {
+  padding-right: 80px;
+}
+.navbar ul li {
+	color: #FFF !important;
+	font-size: 14px !important;
+}
+@media (min-width: 768px) and (max-width: 935px) {
+	.navbar ul li {
+		color: #FFF !important;
+		font-size: 12px !important;
+	}
+	a.navbar-brand {
+	  padding-left: 40px;
+	}
+	ul.nav.navbar-nav.navbar-right {
+	  padding-right: 40px;
+	}
+}
+.nav>li>a {
+  padding: 15px 0;
+}
+h1, .h1 {
+	margin-bottom: 40px;
+}
+h2, .h2 {
+	margin-top: 0;
+}
+.section {
+	height: 600px;
+	width: 100%;
+}
+.section-bg-0 {
+	background-color: #000;
+	padding: 50px 15%;
+}
+@media (max-width: 360px) {
+	.section-bg-0 {
+		padding: 50px 0;
+	}
+	.cust-quotes blockquote p {
+		font-size: 14px !important;
+    line-height: 20px !important;
+	}
+}
+.section-bg-1 {
+	background: url('http://www.mateomaneff.com.ar/images/fondo16.jpg') no-repeat;
+  background-position: 50% 0;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+.section-bg-2 {
+	background-color: #072146;
+	color: #fff;
+}
+.section-bg-3 {
+	background: url('http://www.mateomaneff.com.ar/images/fondo11.jpg') no-repeat;
+	background-position: 50% 0;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+.carousel-inner {
+    max-height: 600px;
+}
+.mg-0 {
+	margin: 0;
+}
+.mg-link {
+	margin: 10px 0;
+}
+.text-responsive {
+	text-align: center;
+}
+@media (max-width: 500px) {
+	.text-responsive {
+		font-size: 1em;
+	}
+}
+.container-bgk {
+    background-color: #fff;
+    margin: 0 40px;
+    padding: 40px 25px;
+    box-shadow: 12px 0 15px -4px rgba(31, 73, 125, 0.8), -12px 0 8px -4px rgba(31, 73, 125, 0.8);
+}
+.navbar-brand {
+    font-family: 'Oswald', sans-serif;
+    color: #004b8c !important;
+}
+a.navbar-brand {
+    font-size: 2em;
+}
+.site-info {
+    font-size: .8em;
+}
+.margin-default {
+	margin-top: 25px;
+}
+.row-flex {
+	display: flex;
+}
+.flex-first {
+	-webkit-box-ordinal-group: 0;
+	-webkit-order: -1;
+	-ms-flex-order: -1;
+	order: -1;
+}
+
+.flex-unordered {
+	-webkit-box-ordinal-group: 1;
+	-webkit-order: 0;
+	-ms-flex-order: 0;
+	order: 0;
+}
+
+.flex-last {
+	-webkit-box-ordinal-group: 2;
+	-webkit-order: 1;
+	-ms-flex-order: 1;
+	order: 1;
+}
+
+/***********************************************************************
+Animaciones
+************************************************************************/
+.img-animate:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.img-animate {
+  webkit-transition: -webkit-transform .2s linear;
+  transition: -webkit-transform .2s linear;
+  transition: transform .2s linear;
+  transition: transform .2s linear,-webkit-transform .2s linear;
+}
+
+blockquote {
+	border-left: 0;
+}
+
+.cust-quotes {
+  height:100px;
+  position:relative;
+}
+
+.cust-quotes blockquote {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  font-size: 14px;
+  text-align: center;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 0.5s ease-out 0s, transform 0.5s ease-in 0s;
+}
+
+/* IE < 10 fallback */
+.no-csstransitions .cust-quotes blockquote,
+.no-csstransforms .cust-quotes blockquote {
+   position:relative;
+}
+
+.cust-quotes blockquote:first-child {
+    opacity: 0;
+    transform: translateY(-10px) scale(1.1);
+}
+.cust-quotes blockquote:first-child + blockquote {
+    opacity: 1;
+    z-index: 1;
+    transition: opacity 1.6s ease 0s;
+}
+.cust-quotes blockquote p{
+  font-size:24px;
+  font-weight:normal;
+  font-style:italic;
+  /*color:#353535;*/
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+.cust-quotes blockquote p:before {
+   content: '\201C';
+}
+.cust-quotes blockquote p:after {
+   content: '\201D';
+}
+.cust-quotes blockquote cite {
+    text-align: center;
+    font-size: 14px;
+    color: #898989;
+}
+.cust-quotes blockquote cite a {
+  font-size:14px;
+  font-weight:normal;
+}
+
+/*****************************************************************************
+Animacion para el menu
+******************************************************************************/
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+/*
+body {
+	font-family:'Lato', sans-serif !important;
+	font-size: 13pt !important;
+	font-weight: 300 !important;
+}
+*/
+.navbar {
+	opacity: 0.9;
+	filter: Alpha(opacity=90); /* IE8 and earlier */
+}
+
+.navbar .active a, .nav a:focus {
+	/*color:#F05557 !important;*/
+	background-color: transparent !important;
+}
+.navbar-default .navbar-nav>li>a:focus,
+.navbar-default .navbar-nav>li>a:hover {
+    color: lightseagreen !important;
+}
+/* Menu - Animação */
+.navbar-nav a::before, .navbar-nav a::after {
+	display: inline-block;
+	opacity: 0;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+	-moz-transition: -moz-transform 0.3s, opacity 0.2s;
+	transition: transform 0.3s, opacity 0.2s;
+}
+.navbar-nav a::before {
+	margin-right: 10px;
+	content: '[';
+	-webkit-transform: translateX(20px);
+	-moz-transform: translateX(20px);
+	transform: translateX(20px);
+}
+.navbar-nav a::after {
+	margin-left: 10px;
+	content: ']';
+	-webkit-transform: translateX(-20px);
+	-moz-transform: translateX(-20px);
+	transform: translateX(-20px);
+}
+.navbar-nav a:hover, .navbar-nav a:hover::before, .navbar-nav a:hover::after, .navbar-nav a:focus::before, .navbar-nav a:focus::after {
+	/*color:#F05557 !important;*/
+	color: lightseagreen;
+	background-color: transparent !important;
+	opacity: 1;
+	-webkit-transform: translateX(0px);
+	-moz-transform: translateX(0px);
+	transform: translateX(0px);
+}
