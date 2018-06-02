@@ -11,11 +11,13 @@
     $count2 = 0;
     foreach($this->model->GetAll() as $r): ?>
     <div class="row <?php echo (++$count0%2 ? "row-flex" : ""); ?>" style="margin:20px 20px 40px">
-      <div class="col-xs-4 <?php echo (++$count1%2 ? "flex-last" : ""); ?>">
+      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 <?php echo (++$count1%2 ? "flex-last" : ""); ?>"
+        style="text-align: center;">
         <img src="http://www.mateomaneff.com.ar/images/<?php echo $r->foto; ?>"
         class="img-responsive img-thumbnail img-animate">
       </div>
-      <div class="col-xs-8 <?php echo (++$count2%2 ? "flex-first" : ""); ?>">
+      <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 <?php echo (++$count2%2 ? "flex-first" : ""); ?>"
+        style="text-align: center;">
         <div class="col-xs-12">
           <a class="" href="?c=noticia&a=VerDetalle&noticia_id=<?php echo $r->noticia_id; ?>">
             <h2><?php echo $r->titulo; ?></h2>

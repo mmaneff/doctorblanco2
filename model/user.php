@@ -1,5 +1,6 @@
 <?php
 include('password.php');
+session_start();
 
 class User extends Password{
 

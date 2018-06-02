@@ -1,14 +1,17 @@
 <?php
 //Se incluye el modelo donde conectará el controlador.
 require_once 'model/tratamiento.php';
+require_once 'model/user.php';
 
 class TratamientoController{
 
     private $model;
+    private $user;
 
     //Creación del modelo
     public function __CONSTRUCT(){
         $this->model = new tratamiento();
+        $this->user = new User();
     }
 
     public function showError($title, $message) {
@@ -69,100 +72,128 @@ class TratamientoController{
 
     public function Listar()
     {
+      if($this->user->is_logged_in()){
         require_once 'view/header-admin.php';
         require_once 'view/admin/tratamiento/tratamiento-listar.php';
         //require_once 'view/footer.php';
+      } else {
+        header('Location: login.php', true);
+        exit();
+      }
     }
 
     //Llamado a la vista tratamiento-editar
     public function Crud(){
-      try {
-        $trat = new tratamiento();
+      if($this->user->is_logged_in()){
+        try {
+          $trat = new tratamiento();
 
-        //Se obtienen los datos del tratamiento a editar.
-        if(isset($_REQUEST['tratamiento_id'])){
-            $trat = $this->model->Obtener($_REQUEST['tratamiento_id']);
+          //Se obtienen los datos del tratamiento a editar.
+          if(isset($_REQUEST['tratamiento_id'])){
+              $trat = $this->model->Obtener($_REQUEST['tratamiento_id']);
+          }
+
+          //Llamado de las vistas.
+          require_once 'view/header-admin.php';
+          require_once 'view/admin/tratamiento/tratamiento-editar.php';
+          //require_once 'view/footer.php';
+        } catch (Exception $e) {
+          $this->showError("Application error", $e->getMessage());
         }
-
-        //Llamado de las vistas.
-        require_once 'view/header-admin.php';
-        require_once 'view/admin/tratamiento/tratamiento-editar.php';
-        //require_once 'view/footer.php';
-      } catch (Exception $e) {
-        $this->showError("Application error", $e->getMessage());
+      } else {
+        header('Location: login.php', true);
+        exit();
       }
-  }
+    }
 
     //Llamado a la vista tratamiento-nuevo
     public function Nuevo(){
-      try {
-        $trat = new tratamiento();
+      if($this->user->is_logged_in()){
+        try {
+          $trat = new tratamiento();
 
-        //Llamado de las vistas.
-        require_once 'view/header-admin.php';
-        require_once 'view/admin/tratamiento/tratamiento-nuevo.php';
-        //require_once 'view/footer.php';
-      } catch (Exception $e) {
-        $this->showError("Application error", $e->getMessage());
+          //Llamado de las vistas.
+          require_once 'view/header-admin.php';
+          require_once 'view/admin/tratamiento/tratamiento-nuevo.php';
+          //require_once 'view/footer.php';
+        } catch (Exception $e) {
+          $this->showError("Application error", $e->getMessage());
+        }
+      } else {
+        header('Location: login.php', true);
+        exit();
       }
     }
 
     //Método que registrar al modelo un nuevo tratamiento.
     public function Guardar(){
-      try {
-        $trat = new tratamiento();
+      if($this->user->is_logged_in()){
+        try {
+          $trat = new tratamiento();
 
-        //Captura de los datos del formulario (vista).
-        $trat->creador_id = $_REQUEST['creador_id'];
-        $trat->detalles = $_REQUEST['detalles'];
-        $trat->detalle_corto = $_REQUEST['detalle_corto'];
-        $trat->fecha = $_REQUEST['fecha'];
-        $trat->foto = $_REQUEST['foto'];
-        $trat->tipo_tratamiento_id = $_REQUEST['tipo_tratamiento_id'];
-        $trat->titulo = $_REQUEST['titulo'];
+          //Captura de los datos del formulario (vista).
+          $trat->detalles = $_REQUEST['detalles'];
+          $trat->detalle_corto = $_REQUEST['detalle_corto'];
+          $trat->fecha = $_REQUEST['fecha'];
+          $trat->foto = $_REQUEST['foto'];
+          $trat->tipo_tratamiento_id = $_REQUEST['tipo_tratamiento_id'];
+          $trat->titulo = $_REQUEST['titulo'];
 
-        //Registro al modelo tratamiento.
-        $this->model->Registrar($trat);
+          //Registro al modelo tratamiento.
+          $this->model->Registrar($trat);
 
-        //header() es usado para enviar encabezados HTTP sin formato.
-        //"Location:" No solamente envía el encabezado al navegador, sino que
-        //también devuelve el código de status (302) REDIRECT al
-        //navegador
-        header('Location: index.php');
-      } catch (Exception $e) {
-        $this->showError("Application error", $e->getMessage());
+          //header() es usado para enviar encabezados HTTP sin formato.
+          //"Location:" No solamente envía el encabezado al navegador, sino que
+          //también devuelve el código de status (302) REDIRECT al
+          //navegador
+          header('Location: admin.php?c=tratamiento&a=Listar');
+        } catch (Exception $e) {
+          $this->showError("Application error", $e->getMessage());
+        }
+      } else {
+        header('Location: login.php', true);
+        exit();
       }
     }
 
     //Método que modifica el modelo de un tratamiento.
     public function Editar(){
-      try {
-        $trat = new tratamiento();
+      if($this->user->is_logged_in()){
+        try {
+          $trat = new tratamiento();
 
-        $trat->tratamiento_id = $_REQUEST['tratamiento_id'];
-        $trat->creador_id = $_REQUEST['creador_id'];
-        $trat->detalles = $_REQUEST['detalles'];
-        $trat->detalle_corto = $_REQUEST['detalle_corto'];
-        $trat->fecha = $_REQUEST['fecha'];
-        $trat->foto = $_REQUEST['foto'];
-        $trat->tipo_tratamiento_id = $_REQUEST['tipo_tratamiento_id'];
-        $trat->titulo = $_REQUEST['titulo'];
+          $trat->tratamiento_id = $_REQUEST['tratamiento_id'];
+          $trat->detalles = $_REQUEST['detalles'];
+          $trat->detalle_corto = $_REQUEST['detalle_corto'];
+          $trat->fecha = $_REQUEST['fecha'];
+          $trat->foto = $_REQUEST['foto'];
+          $trat->tipo_tratamiento_id = $_REQUEST['tipo_tratamiento_id'];
+          $trat->titulo = $_REQUEST['titulo'];
 
-        $this->model->Actualizar($trat);
+          $this->model->Actualizar($trat);
 
-        header('Location: index.php');
-      } catch (Exception $e) {
-        $this->showError("Application error", $e->getMessage());
+          header('Location: admin.php?c=tratamiento&a=Listar');
+        } catch (Exception $e) {
+          $this->showError("Application error", $e->getMessage());
+        }
+      } else {
+        header('Location: login.php', true);
+        exit();
       }
     }
 
     //Método que elimina la tupla tratamiento con el idTratamiento dado.
     public function Eliminar(){
-      try {
-        $this->model->Eliminar($_REQUEST['tratamiento_id']);
-        header('Location: index.php');
-      } catch (Exception $e) {
-        $this->showError("Application error", $e->getMessage());
+      if($this->user->is_logged_in()){
+        try {
+          $this->model->Eliminar($_REQUEST['tratamiento_id']);
+          header('Location: admin.php?c=tratamiento&a=Listar');
+        } catch (Exception $e) {
+          $this->showError("Application error", $e->getMessage());
+        }
+      } else {
+        header('Location: login.php', true);
+        exit();
       }
     }
 }

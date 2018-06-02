@@ -18,6 +18,7 @@
         <script src="assets/js/jquery-ui/jquery-ui.min.js"></script>
         <script src="assets/js/ini.js"></script>
         <script src="assets/js/jquery.anexsoft-validator.js"></script>
+        <script src="assets/js/index.js"></script>
         <script type="text/javascript">
           function initQuoteCarousel() {
 

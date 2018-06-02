@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="assets/css/footer-distributed.css">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|PT+Sans|Vollkorn+SC|Lobster|Lato:700i|Open+Sans:300|Oswald:300" rel="stylesheet">
+
+		<link href="https://cdn.quilljs.com/1.3.4/quill.snow.css" rel="stylesheet">
 	</head>
     <body>
 			<!-- Fixed navbar -->
@@ -30,10 +32,10 @@
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
 							<li><a href="index.php">Inicio</a></li>
-	            <li><a href="?c=principal&a=Listar">Principal</a></li>
+	            <li><a href="?c=doctor&a=Listar">Principal</a></li>
 	            <li><a href="?c=tratamiento&a=Listar">Tratamientos</a></li>
 	            <li><a href="?c=noticia&a=Listar">Noticias</a></li>
-
+							<li><a href="?c=login&a=Logout">Cerrar Sesión</a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
       	</div>

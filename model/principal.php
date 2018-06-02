@@ -64,19 +64,6 @@ class principal
 		}
 	}
 
-	public function Eliminar($principal_id)
-	{
-		try
-		{
-			$stm = $this->pdo->prepare("DELETE FROM principal WHERE principal_id = ?");
-
-			$stm->execute(array($principal_id));
-		} catch (Exception $e)
-		{
-			die($e->getMessage());
-		}
-	}
-
 	public function Actualizar($data)
 	{
 		try
@@ -100,22 +87,5 @@ class principal
 		}
 	}
 
-	public function Registrar(principal $data)
-	{
-		try
-		{
-		$sql = "INSERT INTO principal (titulo,detalles,foto)
-		        VALUES (?, ?, ?)";
 
-		$this->pdo->prepare($sql)
-		     ->execute(
-					 array($data->titulo,
-                 $data->detalles,
-                 $data->foto)
-			);
-		} catch (Exception $e)
-		{
-			die($e->getMessage());
-		}
-	}
 }

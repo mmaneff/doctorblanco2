@@ -4,12 +4,10 @@ class noticia
 		private $pdo;
 
     public $idNoticia;
-    public $creado_id;
     public $detalles;
     public $detalle_corto;
     public $fecha;
     public $foto;
-    public $tipo_id;
     public $titulo;
 
 	public function __CONSTRUCT()
@@ -149,23 +147,19 @@ class noticia
 		try
 		{
 			$sql = "UPDATE noticias SET
-						creador_id    = ?,
 						detalles      = ?,
             detalle_corto = ?,
             fecha         = ?,
             foto          = ?,
-            tipo_id       = ?,
             titulo        = ?
 				    WHERE noticia_id = ?";
 
 			$this->pdo->prepare($sql)
 			     ->execute(
-				    array($data->creador_id,
-                  $data->detalles,
+				    array($data->detalles,
                   $data->detalle_corto,
                   $data->fecha,
                   $data->foto,
-                  $data->tipo_id,
                   $data->titulo,
                   $data->noticia_id)
 				);
@@ -179,17 +173,15 @@ class noticia
 	{
 		try
 		{
-		$sql = "INSERT INTO noticias (creador_id,detalles,detalle_corto,fecha,foto,tipo_id,titulo)
-		        VALUES (?, ?, ?, ?, ?, ?, ?)";
+		$sql = "INSERT INTO noticias (detalles,detalle_corto,fecha,foto,titulo)
+		        VALUES (?, ?, ?, ?, ?)";
 
 		$this->pdo->prepare($sql)
 		     ->execute(
-					 array($data->creador_id,
-                $data->detalles,
+					 array($data->detalles,
                 $data->detalle_corto,
                 $data->fecha,
                 $data->foto,
-                $data->tipo_id,
                 $data->titulo)
 			);
 		} catch (Exception $e)

@@ -1,12 +1,16 @@
 <?php
+//https://www.scalablepath.com/blog/using-quill-js-build-wysiwyg-editor-website/
 require_once 'model/noticia.php';
+require_once 'model/user.php';
 
 class NoticiaController{
 
     private $model;
+    private $user;
 
     public function __CONSTRUCT(){
         $this->model = new noticia();
+        $this->user = new User();
     }
 
     public function showError($title, $message) {
@@ -26,9 +30,14 @@ class NoticiaController{
 
     public function Listar()
     {
+      if($this->user->is_logged_in()){
         require_once 'view/header-admin.php';
         require_once 'view/admin/noticia/noticia-listar.php';
         //require_once 'view/footer.php';
+      } else {
+        header('Location: login.php', true);
+        exit();
+      }
     }
 
     public function Noticias()
@@ -54,83 +63,103 @@ class NoticiaController{
         $this->showError("Application error", $e->getMessage());
       }
     }
-        
+
     public function Crud(){
-      try {
-        $noti = new noticia();
+      if($this->user->is_logged_in()){
+        try {
+          $noti = new noticia();
 
-        if(isset($_REQUEST['noticia_id'])){
-            $noti = $this->model->Obtener($_REQUEST['noticia_id']);
+          if(isset($_REQUEST['noticia_id'])){
+              $noti = $this->model->Obtener($_REQUEST['noticia_id']);
+          }
+
+          require_once 'view/header-admin.php';
+          require_once 'view/admin/noticia/noticia-editar.php';
+          //require_once 'view/footer.php';
+        } catch (Exception $e) {
+          $this->showError("Application error", $e->getMessage());
         }
-
-        require_once 'view/header-admin.php';
-        require_once 'view/admin/noticia/noticia-editar.php';
-        //require_once 'view/footer.php';
-      } catch (Exception $e) {
-        $this->showError("Application error", $e->getMessage());
+      } else {
+        header('Location: login.php', true);
+        exit();
       }
     }
 
     public function Nuevo(){
-      try {
-        $noti = new noticia();
+      if($this->user->is_logged_in()){
+        try {
+          $noti = new noticia();
 
-        require_once 'view/header-admin.php';
-        require_once 'view/admin/noticia/noticia-nuevo.php';
-        //require_once 'view/footer.php';
-      } catch (Exception $e) {
-        $this->showError("Application error", $e->getMessage());
+          require_once 'view/header-admin.php';
+          require_once 'view/admin/noticia/noticia-nuevo.php';
+          //require_once 'view/footer.php';
+        } catch (Exception $e) {
+          $this->showError("Application error", $e->getMessage());
+        }
+      } else {
+        header('Location: login.php', true);
+        exit();
       }
     }
 
     public function Guardar(){
-      try {
-        $noti = new noticia();
+      if($this->user->is_logged_in()){
+        try {
+          $noti = new noticia();
 
-        $noti->noticia_id = $_REQUEST['noticia_id'];
-        $noti->creador_id = $_REQUEST['creador_id'];
-        $noti->detalles = $_REQUEST['detalles'];
-        $noti->detalle_corto = $_REQUEST['detalle_corto'];
-        $noti->fecha = $_REQUEST['fecha'];
-        $noti->foto = $_REQUEST['foto'];
-        $noti->tipo_id = $_REQUEST['tipo_id'];
-        $noti->titulo = $_REQUEST['titulo'];
+          $noti->detalles = $_REQUEST['detalles'];
+          $noti->detalle_corto = $_REQUEST['detalle_corto'];
+          $noti->fecha = $_REQUEST['fecha'];
+          $noti->foto = $_REQUEST['foto'];
+          $noti->titulo = $_REQUEST['titulo'];
 
-        $this->model->Registrar($noti);
+          $this->model->Registrar($noti);
 
-        header('Location: index.php?c=noticia');
-      } catch (Exception $e) {
-        $this->showError("Application error", $e->getMessage());
+          header('Location: admin.php?c=noticia&a=Listar');
+        } catch (Exception $e) {
+          $this->showError("Application error", $e->getMessage());
+        }
+      } else {
+        header('Location: login.php', true);
+        exit();
       }
     }
 
     public function Editar(){
-      try {
-        $noti = new noticia();
+      if($this->user->is_logged_in()){
+        try {
+          $noti = new noticia();
 
-        $noti->noticia_id = $_REQUEST['noticia_id'];
-        $noti->creador_id = $_REQUEST['creador_id'];
-        $noti->detalles = $_REQUEST['detalles'];
-        $noti->detalle_corto = $_REQUEST['detalle_corto'];
-        $noti->fecha = $_REQUEST['fecha'];
-        $noti->foto = $_REQUEST['foto'];
-        $noti->tipo_id = $_REQUEST['tipo_id'];
-        $noti->titulo = $_REQUEST['titulo'];
+          $noti->noticia_id = $_REQUEST['noticia_id'];
+          $noti->detalles = $_REQUEST['detalles'];
+          $noti->detalle_corto = $_REQUEST['detalle_corto'];
+          $noti->fecha = $_REQUEST['fecha'];
+          $noti->foto = $_REQUEST['foto'];
+          $noti->titulo = $_REQUEST['titulo'];
 
-        $this->model->Actualizar($noti);
+          $this->model->Actualizar($noti);
 
-        header('Location: index.php?c=noticia');
-      } catch (Exception $e) {
-        $this->showError("Application error", $e->getMessage());
+          header('Location: admin.php?c=noticia&a=Listar');
+        } catch (Exception $e) {
+          $this->showError("Application error", $e->getMessage());
+        }
+      } else {
+        header('Location: login.php', true);
+        exit();
       }
     }
 
     public function Eliminar(){
-      try {
-        $this->model->Eliminar($_REQUEST['noticia_id']);
-        header('Location: index.php');
-      } catch (Exception $e) {
-        $this->showError("Application error", $e->getMessage());
+      if($this->user->is_logged_in()){
+        try {
+          $this->model->Eliminar($_REQUEST['noticia_id']);
+          header('Location: admin.php?c=noticia&a=Listar');
+        } catch (Exception $e) {
+          $this->showError("Application error", $e->getMessage());
+        }
+      } else {
+        header('Location: login.php', true);
+        exit();
       }
     }
 }

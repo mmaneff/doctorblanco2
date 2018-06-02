@@ -10,28 +10,28 @@
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
-      <div class="item active">
+      <div class="item active" style="max-height: 600px;">
         <img src="http://www.mateomaneff.com.ar/images/IMG_2277.JPG" alt="Especialista en Cirugía Plástica y Reparadora">
         <div class="carousel-caption">
           <!--<h5>First slide label</h5>-->
           <p>Especialista en Cirugía Plástica y Reparadora</p>
         </div>
       </div>
-      <div class="item">
+      <div class="item" style="max-height: 600px;">
         <img src="http://www.mateomaneff.com.ar/images/IMG_2303-1.jpg" alt="Cirugía Mamaria, Facial, Corporal y Reparadora">
         <div class="carousel-caption">
           <!--<h5>First slide label</h5>-->
           <p>Cirugía Mamaria, Facial, Corporal y Reparadora</p>
         </div>
       </div>
-      <div class="item">
+      <div class="item" style="max-height: 600px;">
         <img src="http://www.mateomaneff.com.ar/images/IMG_2331-1.jpg" alt="Hacia un resultado fino, armónico y natural">
         <div class="carousel-caption">
           <!--<h5>First slide label</h5>-->
           <p>Hacia un resultado fino, armónico y natural</p>
         </div>
       </div>
-      <div class="item">
+      <div class="item" style="max-height: 600px;">
         <img src="http://www.mateomaneff.com.ar/images/IMG_7012-2.jpg" alt="Tratamientos no Quirúrgicos">
         <div class="carousel-caption">
           <!--<h5>First slide label</h5>-->

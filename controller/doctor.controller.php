@@ -1,12 +1,15 @@
 <?php
 require_once 'model/principal.php';
+require_once 'model/user.php';
 
 class DoctorController{
 
     private $model;
+    private $user;
 
     public function __CONSTRUCT(){
         $this->model = new principal();
+        $this->user = new User();
     }
 
     public function showError($title, $message) {
@@ -22,7 +25,7 @@ class DoctorController{
       try {
         $prin = new principal();
         $prin = $this->model->ObtenerInfo();
-        
+
         require_once 'view/header.php';
         require_once 'view/doctor/doctor.php';
         require_once 'view/footer.php';
@@ -31,75 +34,58 @@ class DoctorController{
       }
     }
 
+    public function Listar()
+    {
+      if($this->user->is_logged_in()){
+        require_once 'view/header-admin.php';
+        require_once 'view/admin/doctor/doctor-listar.php';
+        //require_once 'view/footer.php';
+      } else {
+        header('Location: login.php', true);
+        exit();
+      }
+    }
+
     public function Crud(){
-      try {
-        $prin = new principal();
+      if($this->user->is_logged_in()){
+        try {
+          $prin = new principal();
+          if(isset($_REQUEST['principal_id'])){
+              $prin = $this->model->Obtener($_REQUEST['principal_id']);
+          }
 
-        if(isset($_REQUEST['idPrincipal'])){
-            $prin = $this->model->Obtener($_REQUEST['principal_id']);
+          require_once 'view/header-admin.php';
+          require_once 'view/admin/doctor/doctor-editar.php';
+          //require_once 'view/footer.php';
+        } catch (Exception $e) {
+          $this->showError("Application error", $e->getMessage());
         }
-
-        require_once 'view/header-admin.php';
-        require_once 'view/principal/principal-editar.php';
-        //require_once 'view/footer.php';
-      } catch (Exception $e) {
-        $this->showError("Application error", $e->getMessage());
-      }
-    }
-
-    public function Nuevo(){
-      try {
-        $prin = new principal();
-
-        require_once 'view/header-admin.php';
-        require_once 'view/principal/principal-nuevo.php';
-        //require_once 'view/footer.php';
-      } catch (Exception $e) {
-        $this->showError("Application error", $e->getMessage());
-      }
-    }
-
-    public function Guardar(){
-      try {
-        $prin = new principal();
-
-        $prin->principal_id = $_REQUEST['principal_id'];
-        $prin->detalles = $_REQUEST['detalles'];
-        $prin->foto = $_REQUEST['foto'];
-        $prin->titulo = $_REQUEST['titulo'];
-
-        $this->model->Registrar($prin);
-
-        header('Location: index.php?c=principal');
-        //$this->redirect('index.php');
-      } catch (Exception $e) {
-        $this->showError("Application error", $e->getMessage());
+      } else {
+        header('Location: login.php', true);
+        exit();
       }
     }
 
     public function Editar(){
-      try {
-        $prin = new principal();
+      if($this->user->is_logged_in()){
+        try {
+          $prin = new principal();
 
-        $prin->principal_id = $_REQUEST['principal_id'];
-        $prin->detalles = $_REQUEST['detalles'];
-        $prin->foto = $_REQUEST['foto'];
-        $prin->titulo = $_REQUEST['titulo'];
+          $prin->principal_id = $_REQUEST['principal_id'];
+          $prin->detalles = $_REQUEST['detalles'];
+          $prin->foto = $_REQUEST['foto'];
+          $prin->titulo = $_REQUEST['titulo'];
 
-        $this->model->Actualizar($prin);
+          $this->model->Actualizar($prin);
 
-        header('Location: index.php?c=principal');
-      } catch (Exception $e) {
-        $this->showError("Application error", $e->getMessage());
-      }
-    }
-
-    public function Eliminar(){
-      try {
-        $this->model->Eliminar($_REQUEST['principal_id']);
-        header('Location: index.php');
-      } catch (Exception $e) {
-        $this->showError("Application error", $e->getMessage());
+          require_once 'view/header-admin.php';
+          require_once 'view/doctor/doctor.php';
+        } catch (Exception $e) {
+          $this->showError("Application error", $e->getMessage());
+        }
+      } else {
+        header('Location: login.php', true);
+        exit();
       }
     }
 }

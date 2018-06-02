@@ -6,7 +6,6 @@ class tratamiento
 
 		//Atributos del objeto proveedor
     public $tratamiento_id;
-    public $creado_id;
     public $detalles;
     public $detalle_corto;
 		public $fecha;
@@ -149,7 +148,6 @@ class tratamiento
 		{
 			//Sentencia SQL para actualizar los datos.
 			$sql = "UPDATE tratamientos SET
-						creador_id          = ?,
 						detalles        		= ?,
             detalle_corto       = ?,
 						fecha        				= ?,
@@ -160,8 +158,7 @@ class tratamiento
 			//Ejecución de la sentencia a partir de un arreglo.
 			$this->pdo->prepare($sql)
 			     ->execute(
-				    array($data->creador_id,
-                 	$data->detalles,
+				    array($data->detalles,
                  	$data->detalle_corto,
                  	$data->fecha,
  									$data->foto,
@@ -181,13 +178,12 @@ class tratamiento
 		try
 		{
 			//Sentencia SQL.
-			$sql = "INSERT INTO tratamientos (creador_id,detalles,detalle_corto,fecha,foto,tipo_tratamiento_id,titulo)
-		        VALUES (?, ?, ?, ?, ?, ?, ?)";
+			$sql = "INSERT INTO tratamientos (detalles,detalle_corto,fecha,foto,tipo_tratamiento_id,titulo)
+		        VALUES (?, ?, ?, ?, ?, ?)";
 
 			$this->pdo->prepare($sql)
 		     ->execute(
-					 array($data->creador_id,
-                $data->detalles,
+					 array($data->detalles,
                 $data->detalle_corto,
                 $data->fecha,
 								$data->foto,

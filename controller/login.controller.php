@@ -1,4 +1,6 @@
 <?php
+//session_start();
+
 //Se incluye el modelo donde conectará el controlador.
 require_once 'model/user.php';
 
@@ -58,7 +60,18 @@ class LoginController{
           $error[] = 'Usernames are required to be Alphanumeric, and between 3-16 characters long';
         }
       } catch (Exception $e) {
-        $this->showError("Unautorizer","Error", "500");
+        $this->showError("Application error", $e->getMessage(), "500");
+      }
+    }
+
+    public function Logout()
+    {
+      try {
+          $this->model->logout();
+          header('Location: index.php');
+          exit;
+      } catch (Exception $e) {
+        $this->showError("Application error", $e->getMessage(), "500");
       }
     }
 
