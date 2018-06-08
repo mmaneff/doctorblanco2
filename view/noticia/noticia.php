@@ -5,11 +5,11 @@
     </div>
   </div>
   <div class="row container-bgk">
-    <?php
-    $count0 = 0;
-    $count1 = 0;
-    $count2 = 0;
-    foreach($this->model->GetAll() as $r): ?>
+  <?php
+  $count0 = 0;
+  $count1 = 0;
+  $count2 = 0;
+  foreach($this->model->GetAll() as $r): ?>
     <div class="row <?php echo (++$count0%2 ? "row-flex" : ""); ?>" style="margin:20px 20px 40px">
       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 <?php echo (++$count1%2 ? "flex-last" : ""); ?>"
         style="text-align: center;">
@@ -28,6 +28,6 @@
         </div>
       </div>
     </div>
-    <?php endforeach; ?>
+  <?php endforeach; ?>
   </div>
 </div>

@@ -28,7 +28,7 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="form-group">
             <label>Detalle Largo</label>
-            <div id="editor2"><?php echo $trat->detalles; ?></div>
+            <div id="editor"><?php echo $trat->detalles; ?></div>
             <input type="hidden" name="detalles" id="detalles" value="" />
         </div>
       </div>
@@ -47,13 +47,37 @@
 <script src="assets/js/jquery-ui/jquery-ui.min.js"></script>
 <script src="https://cdn.quilljs.com/1.3.4/quill.js"></script>
 <script>
+    var toolbarOptions = [
+      [{ 'font': [] }],
+      [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      ['blockquote', 'code-block'],
+      [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+      [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+      [{ 'direction': 'rtl' }],                         // text direction
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+      [{ 'align': [] }],
+      ['clean'],                                         // remove formatting button
+      ['link', 'image'],
+    ];
+
     $(document).ready(function(){
         $("#frm-tratamiento").submit(function(){
-            $('#detalles').attr("value", quill2.root.innerHTML);
+            $('#detalles').attr("value", quill.root.innerHTML);
             return $(this).validate();
         });
     });
-    var quill2 = new Quill('#editor2', {
+    var quill = new Quill('#editor', {
+      modules: {
+        toolbar: toolbarOptions
+      },
       theme: 'snow'
     });
+
+    // Handlers can also be added post initialization
+    //var toolbar = quill.getModule('toolbar');
+    //toolbar.addHandler('image', showImageUI);
 </script>

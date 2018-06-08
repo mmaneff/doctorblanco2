@@ -606,3 +606,101 @@ body {
   }
 */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.animation-element.fade-in {
+  opacity: 0;
+	transition-duration: 4s;
+	transition-timing-function: cubic-bezier(.175,.885,.32,1.275);
+	backface-visibility: hidden;
+  transition-property: transform;
+	transform: perspective(2500px) rotateY(-100deg);
+}
+
+.animation-element.fade-in.in-view {
+  opacity: 1;
+	transition-duration: 4s;
+	transition-timing-function: cubic-bezier(.175,.885,.32,1.275);
+	transform: perspective(2500px) rotateY(0);
+}
+/*animation slide left styled for testimonials*/
+
+.animation-element.fade-in.testimonial {
+  float: left;
+  width: 47%;
+  margin: 0% 1.5% 3% 1.5%;
+	padding: 15px;
+}
+.animation-element.fade-in.testimonial:nth-of-type(odd) {
+  width: 48.5%;
+  margin: 0% 1.5% 3.0% 0%;
+}
+.animation-element.fade-in.testimonial:nth-of-type(even) {
+  width: 48.5%;
+  margin: 0% 0% 3.0% 1.5%;
+}
+.animation-element.fade-in.testimonial .header{
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.animation-element.fade-in.testimonial .left{
+  float: left;
+  margin-right: 15px;
+}
+.animation-element.fade-in.testimonial .right{
+  float: left;
+}
+
+.animation-element.fade-in.testimonial h3 {
+  margin: 0px 0px 5px 0px;
+}
+.animation-element.fade-in.testimonial h4 {
+  margin: 0px 0px 5px 0px;
+}
+.animation-element.fade-in.testimonial .content {
+  float: left;
+  width:100%;
+  margin-bottom: 10px;
+}
+.animation-element.fade-in.testimonial .rating{}
+.animation-element.fade-in.testimonial i {
+  color: #aaa;
+  margin-right: 5px;
+}
+
+/*media queries for small devices*/
+@media screen and (max-width: 678px){
+  /*testimonials*/
+  .animation-element.fade-in.testimonial,
+  .animation-element.fade-in.testimonial:nth-of-type(odd),
+  .animation-element.fade-in.testimonial:nth-of-type(even){
+    width: 100%;
+    margin: 0px 0px 20px 0px;
+  }
+  .animation-element.fade-in.testimonial .right,
+  .animation-element.fade-in.testimonial .left,
+  .animation-element.fade-in.testimonial .content,
+  .animation-element.fade-in.testimonial .rating{
+    text-align: center;
+    float: none;
+  }
+	/*
+  .animation-element.slide-left.testimonial img{
+    width: 85px;
+    height: 85px;
+    margin-bottom: 5px;
+  }
+*/
+}
